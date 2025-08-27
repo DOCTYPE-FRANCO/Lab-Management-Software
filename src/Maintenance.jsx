@@ -8,12 +8,7 @@ import { Link } from "react-router-dom";
 function Maintenance(){
     return(
         <div className="flex flex-col justify-center items-center">
-            <div className="mb-20  flex flex-row p-4 w-full ">
-                <div>                
-                    <img src={Logo} className="w-[100px]"/>
-                </div>
-                <Navbar/>
-            </div>
+            
             <div className="flex flex-row justify-center items-center">
                 <h1 className="text-white text-3xl font-bold max-w-[250px] md:max-w-[500px]">
                     REQUEST REPAIR / MAINTENANCE

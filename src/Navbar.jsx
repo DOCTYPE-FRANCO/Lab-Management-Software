@@ -31,7 +31,7 @@ function Navbar(){
                         <img onClick={()=> setMobile(false)} src={X} className="w-[40px] h-[40px] justify-end "/>
                     </div>
                     <ul className="text-3xl font-bold flex flex-col gap-7">
-                        <li onClick={()=> setMobile(false)}><a href="#Header" className="cursor-pointer hover:text-gray-600 font-bold">Home</a></li>
+                        <Link to="/"><li onClick={()=> setMobile(false)}><a href="#Header" className="cursor-pointer hover:text-gray-600 font-bold">Home</a></li></Link>
                         <li onClick={()=> setMobile(false)}><a href="#About" className="cursor-pointer hover:text-gray-600 font-bold">About</a></li>
                         <li onClick={()=> setMobile(false)}><a href="#Contact" className="cursor-pointer hover:text-gray-600 font-bold">Contact</a></li>
                         <li onClick={()=> setMobile(false)}><a href="#Sign-In" className="cursor-pointer hover:text-gray-600 font-bold">Sign In</a></li>                        

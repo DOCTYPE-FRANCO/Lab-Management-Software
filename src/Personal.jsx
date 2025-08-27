@@ -6,13 +6,8 @@ import PersonalSystem from "./assets/user-img.png";
 
 function Personal(){
     return(
-        <div>
-            <div className="mb-15  flex flex-row p-4 w-full h-10 ">
-                <div>                
-                    <img src={Logo} className="w-[100px]"/>
-                </div>
-                <Navbar />
-            </div>
+        <div className="flex flex-col justify-center items-center">
+            
             <div className="flex flex-col gap-5 justify-center items-center mt-0  ">
                 <img src={PersonalSystem} className="w-[65px]  rounded-full"/>
                 <h1 className="text-white text-3xl font-bold">
@@ -21,40 +16,41 @@ function Personal(){
                 
             </div>
             
-            <div className="flex flex-col items-center justify-center mt-10">
+            <div className="flex flex-col gap-3 w-[400px] h-[500px] p-7 pt-10 rounded-2xl mb-11 shadow-lg bg-white justify-center mt-10">
 
-                <div className="flex flex-row  gap-5 items-center justify-center mt-10">
-                    <label className="font-bold text-white">Name :</label>
-                    <input type="text" placeholder="Enter you name" className="bg-white w-50s py-3 rounded-r-3xl pl-5 font-bold " />
+                <div className="flex flex-col">
+                    <label className="font-bold">Name:</label>
+                    <input type="text" className="border border-black p-2"/>
                 </div>
-
-                <div className="flex flex-row  gap-5 items-center justify-center mt-10">
-                    <label className=" font-bold text-white">Computer Brand :</label>
-                    <input type="text" placeholder="Eg. Dell, HP, Fujistu, Mac" className="bg-white w-55 py-3 rounded-r-3xl pl-5 font-bold" />
-                </div>
-
-                <div className="flex flex-row  gap-5 items-center justify-center mt-10">
-                    <label className=" font-bold text-white">Operating System:</label>
-                    <select placeholder="Explain the issue" className="bg-white w-40 py-3 rounded-r-3xl pl-5 font-bold">
-                        <option>Windows</option>
-                        <option>Linux</option>
-                        <option>MacOS</option>
-                        <option>Other</option>
+                <div className="flex flex-col">
+                    <label className="font-bold">System Brand:</label>
+                    <select className="border border-black">
+                        <option value="dell">Dell</option>
+                        <option value="hp">HP</option>
+                        <option value="macbook">Macbook</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
 
-                <div className="flex flex-row  gap-5 items-center justify-center mt-10">
-                    <label className=" font-bold text-white">What Wrong? :</label>
-                    <input type="text" placeholder="Explain the issue" className="bg-white w-50 py-3 rounded-r-3xl pl-5 font-bold" />
+                <div className="flex flex-col">
+                    <label className="font-bold">Issues:</label>
+                    <input type="text" className="border border-black p-2"/>
                 </div>
 
-                <div className="flex flex-row  gap-5 items-center justify-center mt-10">
-                    <label className=" font-bold text-white">What Have you tried? :</label>
-                    <input type="text" placeholder="Have you tried fixing it?" className="bg-white w-55 py-3 rounded-r-3xl pl-5 font-bold" />
+                <div className="flex flex-col">
+                    <label className="font-bold">What have you tried?: </label>
+                    <input type="tel" className="border border-black p-2"/>
                 </div>
 
-                <div>
-                    <button className="bg-white text-black font-bold py-3 px-6 rounded-full mt-10 hover:bg-gray-500 transition duration-300">
+                    
+
+                <div className="flex flex-col">
+                    <label className="font-bold">What did you notice?</label>
+                    <input type="text" className="border border-black p-5"/>
+                </div>
+
+                <div className="flex justify-center items-center">
+                    <button className="font-bold bg-blue-700 text-white w-[100px] h-[50px] rounded-full hover:bg-slate-500">
                         Submit
                     </button>
                 </div>
