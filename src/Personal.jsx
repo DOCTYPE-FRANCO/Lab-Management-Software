@@ -16,7 +16,7 @@ function Personal(){
                 
             </div>
             
-            <div className="flex flex-col gap-3 w-[400px] h-[500px] p-7 pt-10 rounded-2xl mb-11 shadow-lg bg-white justify-center mt-10">
+            <div className="flex flex-col gap-3 sm:w-[250px] w-[400px] h-[500px] p-7 pt-10 rounded-2xl mb-11 shadow-lg bg-white justify-center mt-10">
 
                 <div className="flex flex-col">
                     <label className="font-bold">Name:</label>

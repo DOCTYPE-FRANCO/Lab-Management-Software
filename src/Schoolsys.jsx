@@ -16,7 +16,7 @@ function Schoolsys() {
                 
             </div>
             
-            <div className="flex flex-col gap-3 w-[400px] h-[400px] p-4 pt-10 rounded-2xl mb-11 shadow-lg bg-white justify-center mt-10">
+            <div className="flex flex-col gap-3 sm:w-[300px] w-[400px] h-[400px] p-4 pt-10 rounded-2xl mb-11 shadow-lg bg-white justify-center mt-10">
 
                 <div className="flex flex-col">
                     <label className="font-bold">Issue:</label>
