@@ -39,7 +39,7 @@ function Personal(){
 
                 <div className="flex flex-col">
                     <label className="font-bold">What have you tried?: </label>
-                    <input type="tel" className="border border-black p-2"/>
+                    <input type="text" className="border border-black p-2"/>
                 </div>
 
                     
