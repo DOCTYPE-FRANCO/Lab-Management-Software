@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Logo from "./assets/pau-logo.png";
 import PersonalSystem from "./assets/user-img.png";
 import axios from "axios";
+import X from "./assets/Xicon.svg"
 
 
 function Personal(){
@@ -13,6 +14,8 @@ function Personal(){
         tried: "",
         noticed: ""
     });
+
+    const [getSessions, setGetSessions] = useState(false);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -30,9 +33,11 @@ function Personal(){
             console.log("Submitted successfully:", response.data);
 
             
+            
         } catch (error) {
             console.error(" Error submitting form:", error);
         }
+        setGetSessions(true);
 
         setFormData({
             name: "",
@@ -45,97 +50,112 @@ function Personal(){
     }
 
     return(
-        <div className="flex flex-col justify-center items-center">
+        <>
+            <div className="flex flex-col justify-center items-center overflow-hidden">
             
-            <div className="flex flex-col gap-5 justify-center items-center mt-0  ">
-                <img src={PersonalSystem} className="w-[65px]  rounded-full"/>
-                <h1 className="text-white text-3xl font-bold">
-                    PERSONAL COMPUTER 
-                </h1>
-                
-            </div>
+                <div className="flex flex-col gap-5 justify-center items-center mt-0  ">
+                    <img src={PersonalSystem} className="w-[65px]  rounded-full"/>
+                    <h1 className="text-white text-3xl font-bold">
+                        PERSONAL COMPUTER 
+                    </h1>
+                    
+                </div>
 
-    
-            <form id="personalForm"  onSubmit={handleSubmit}>
-                <div className="flex flex-col gap-3 sm:w-[250px] w-[400px] h-[500px] p-7 pt-10 rounded-2xl mb-11 shadow-lg bg-white justify-center mt-10">
+        
+                <form id="personalForm"  onSubmit={handleSubmit}>
+                    <div className="flex flex-col gap-3 sm:w-[250px] w-[400px]  p-7 pt-10 rounded-2xl mb-11 shadow-lg bg-white justify-center mt-10">
 
-                    {/* Name */}
-                    <div className="flex flex-col">
-                        <label className="font-bold">Name:</label>
+                        {/* Name */}
+                        <div className="flex flex-col">
+                            <label className="font-bold">Name:</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name} 
+
+                                onChange={handleChange}
+                                className="border border-black p-2"
+                            />
+                        </div>
+
+                        {/* System Brand */}
+                        <div className="flex flex-col">
+                        <label className="font-bold">System Brand:</label>
                         <input
                             type="text"
-                            name="name"
-                            value={formData.name} 
+                            name="systemBrand"
+                            value={formData.systemBrand}
+                            onChange={handleChange}
+                            className="border border-black p-2"
+                            placeholder="E.g Macbook, Dell, Hp"
+                        />
+                        </div>
 
+                        {/* Issues */}
+                        <div className="flex flex-col">
+                        <label className="font-bold">Issues:</label>
+                        <input
+                            type="text"
+                            name="issues"
+                            value={formData.issues}
                             onChange={handleChange}
                             className="border border-black p-2"
                         />
-                    </div>
+                        </div>
 
-                    {/* System Brand */}
-                    <div className="flex flex-col">
-                    <label className="font-bold">System Brand:</label>
-                    <input
-                        type="text"
-                        name="systemBrand"
-                        value={formData.systemBrand}
-                        onChange={handleChange}
-                        className="border border-black p-2"
-                        placeholder="E.g Macbook, Dell, Hp"
-                    />
-                    </div>
+                        {/* What have you tried */}
+                        <div className="flex flex-col">
+                        <label className="font-bold">What have you tried?:</label>
+                        <input
+                            type="text"
+                            name="tried"
+                            value={formData.tried}
+                            onChange={handleChange}
+                            className="border border-black p-2"
+                        />
+                        </div>
 
-                    {/* Issues */}
-                    <div className="flex flex-col">
-                    <label className="font-bold">Issues:</label>
-                    <input
-                        type="text"
-                        name="issues"
-                        value={formData.issues}
-                        onChange={handleChange}
-                        className="border border-black p-2"
-                    />
-                    </div>
+                        {/* What did you notice */}
+                        <div className="flex flex-col">
+                        <label className="font-bold">What did you notice?</label>
+                        <input
+                            type="text"
+                            name="noticed"
+                            value={formData.noticed}
+                            onChange={handleChange}
+                            className="border border-black p-5"
+                        />
+                        </div>
 
-                    {/* What have you tried */}
-                    <div className="flex flex-col">
-                    <label className="font-bold">What have you tried?:</label>
-                    <input
-                        type="text"
-                        name="tried"
-                        value={formData.tried}
-                        onChange={handleChange}
-                        className="border border-black p-2"
-                    />
+                        {/* Submit Button */}
+                        <div className="flex justify-center items-center">
+                        <button
+                            
+                            type="submit"
+                            className="font-bold bg-blue-700 text-white w-[100px] h-[50px] rounded-full hover:bg-slate-500"
+                        >
+                            Submit
+                        </button>
+                        </div>
                     </div>
-
-                    {/* What did you notice */}
-                    <div className="flex flex-col">
-                    <label className="font-bold">What did you notice?</label>
-                    <input
-                        type="text"
-                        name="noticed"
-                        value={formData.noticed}
-                        onChange={handleChange}
-                        className="border border-black p-5"
-                    />
+                </form>
+                
+                {/* Book Session */}
+                <div className={`${getSessions? " flex flex-col  fixed gap-10  z-50 md:w-[550px] md:h-[300px] w-[370px] h-[250px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
+                    <div className="flex justify-end items-end w-full h-[50px]">
+                        <img src={X} className="w-[40px] h-[40px]" onClick={()=> setGetSessions(false)}/>
                     </div>
-
-                    {/* Submit Button */}
-                    <div className="flex justify-center items-center">
-                    <button
-                        
-                        type="submit"
-                        className="font-bold bg-blue-700 text-white w-[100px] h-[50px] rounded-full hover:bg-slate-500"
-                    >
-                        Submit
-                    </button>
+                    
+                    <div className="flex flex-col justify-center items-center gap-10">
+                        <p className="text-2xl font-bold">Book a Session for Repair</p>
+                        <button className="w-[240px] h-[40px] bg-blue-600 rounded-full font-bold text-white hover:bg-gray-600">
+                            Get Available Sessions
+                        </button>
                     </div>
                 </div>
-            </form>
+            </div>
             
-            
-        </div>
+        </>
     );
 }
 
