@@ -17,6 +17,10 @@ function Personal(){
 
     const [getSessions, setGetSessions] = useState(false);
 
+    const [sessionList, setSessionList] = useState(false);
+
+    const [sessions, setSessions] = useState([]);
+
     function handleChange(event) {
         const { name, value } = event.target;
         setFormData(prevData => ({
@@ -47,6 +51,19 @@ function Personal(){
             noticed: "" 
         })
 
+    }
+
+    async function getAvailableSessions(event){
+        event.preventDefault();
+        try{
+            const response = await axios.get("http://localhost:8080/api/availablesessions")
+            console.log(response.data);
+            setSessions(response.data);
+            setSessionList(true);
+        }catch(error){
+            console.log(error);
+        }
+        
     }
 
     return(
@@ -141,16 +158,36 @@ function Personal(){
                 </form>
                 
                 {/* Book Session */}
-                <div className={`${getSessions? " flex flex-col  fixed gap-10  z-50 md:w-[550px] md:h-[300px] w-[370px] h-[250px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
+                <div className={`${getSessions? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[300px] w-[370px] h-[250px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
                     <div className="flex justify-end items-end w-full h-[50px]">
                         <img src={X} className="w-[40px] h-[40px]" onClick={()=> setGetSessions(false)}/>
                     </div>
                     
                     <div className="flex flex-col justify-center items-center gap-10">
                         <p className="text-2xl font-bold">Book a Session for Repair</p>
-                        <button className="w-[240px] h-[40px] bg-blue-600 rounded-full font-bold text-white hover:bg-gray-600">
+                        <button onClick={getAvailableSessions} className="w-[240px] h-[40px] bg-blue-600 rounded-full font-bold text-white hover:bg-gray-600">
                             Get Available Sessions
                         </button>
+                    </div>
+                </div>
+
+                {/* Session List */}
+                <div className={`${sessionList? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[300px] w-[370px] h-[350px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
+                    <div className="flex justify-end items-end w-full h-[50px]">
+                        <img src={X} className="w-[40px] h-[40px] " onClick={()=> setSessionList(false)} />
+                    </div>
+                    
+                    <div className="flex flex-col justify-center items-center gap-10">
+                        <p className="text-2xl font-bold">Available Sessions</p>
+                        <div>
+                            {sessions.map((session, index)=>(
+                                <p key={index}>
+                                    <li> {session.date} || {session.startTime} - {session.endTime} </li>
+                                </p>
+                            ))}
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>
