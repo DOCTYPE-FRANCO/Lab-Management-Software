@@ -21,6 +21,13 @@ function Personal(){
 
     const [sessions, setSessions] = useState([]);
 
+    const [selectedSession, setSelectedSession] = useState(null);
+
+    function handleSelect(session){
+        setSelectedSession(session);
+        console.log(selectedSession);
+    }
+
     function handleChange(event) {
         const { name, value } = event.target;
         setFormData(prevData => ({
@@ -172,7 +179,7 @@ function Personal(){
                 </div>
 
                 {/* Session List */}
-                <div className={`${sessionList? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[300px] w-[370px] h-[350px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
+                <div className={`${sessionList? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[420px] w-[370px] h-[350px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
                     <div className="flex justify-end items-end w-full h-[50px]">
                         <img src={X} className="w-[40px] h-[40px] " onClick={()=> setSessionList(false)} />
                     </div>
@@ -180,11 +187,30 @@ function Personal(){
                     <div className="flex flex-col justify-center items-center gap-10">
                         <p className="text-2xl font-bold">Available Sessions</p>
                         <div>
-                            {sessions.map((session, index)=>(
-                                <p key={index}>
-                                    <li> {session.date} || {session.startTime} - {session.endTime} </li>
-                                </p>
-                            ))}
+                            {sessions.map((session, index) => {
+                                
+                                const dateObj = new Date(session.date);
+                                const formattedDate = dateObj.toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric'
+                                });
+
+                                // Format start and end time
+                                const formattedStart = session.startTime
+                                    ? new Date(`1970-01-01T${session.startTime}`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+                                    : '';
+                                const formattedEnd = session.endTime
+                                    ? new Date(`1970-01-01T${session.endTime}`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+                                    : '';
+
+                                return (
+                                    <p key={index} className="hover:bg-gray-600" onClick={()=> setSelectedSession(session)}> {formattedDate} || {formattedStart} - {formattedEnd} </p>
+                                );
+                            })}
+                        </div>
+                        <div>
+                            <button className="bg-blue-700 rounded-full px-4 py-3 text-white hover:bg-gray-600 active:bg-blue-300">Confirm</button>
                         </div>
 
                         
