@@ -157,7 +157,7 @@ function Personal(){
                             
                             type="submit"
                             className="font-bold bg-blue-700 text-white w-[100px] h-[50px] rounded-full hover:bg-slate-500"
-                            onSubmit={handleSubmit}
+                            onClick={handleSubmit}
                         >
                             Submit
                         </button>
