@@ -18,10 +18,12 @@ function Service(){
                 <p className="text-black  font-bold">Lab Sessions</p>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-5 bg-white w-[200px] h-[200px] rounded-2xl relative bottom-0 hover:bottom-5 transition-all duration-500">
-                <img src={Inventory} className="w-[40px] h-[40px]" />
-                <p className="text-black  font-bold">Inventory</p>
-            </div>
+            <Link to="/inventory">
+                <div className="flex flex-col items-center justify-center gap-5 bg-white w-[200px] h-[200px] rounded-2xl relative bottom-0 hover:bottom-5 transition-all duration-500">
+                    <img src={Inventory} className="w-[40px] h-[40px]" />
+                    <p className="text-black  font-bold">Inventory</p>
+                </div>
+            </Link>
 
            <Link to="/maintenance">
              <div className="flex flex-col items-center justify-center gap-5 bg-white w-[200px] h-[200px] rounded-2xl relative bottom-0 hover:bottom-5 transition-all duration-500">

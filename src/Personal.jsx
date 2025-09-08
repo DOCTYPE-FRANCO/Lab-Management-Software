@@ -23,9 +23,21 @@ function Personal(){
 
     const [selectedSession, setSelectedSession] = useState(null);
 
-    function handleSelect(session){
+    function handleSessionSubmit(session){
         setSelectedSession(session);
-        console.log(selectedSession);
+        bookSession();
+        console.log(selectedSession.id);
+    }
+
+    async function bookSession(){
+        try{
+            const response = await axios.post(`http://localhost:8080/api/bookSession/${selectedSession.id}/STU003`);
+            console.log("Session booked successfully:", response.data);
+            setSessionList(false);
+            setGetSessions(false);
+        }catch(error){
+            console.log(error);
+        }
     }
 
     function handleChange(event) {
@@ -157,7 +169,7 @@ function Personal(){
                             
                             type="submit"
                             className="font-bold bg-blue-700 text-white w-[100px] h-[50px] rounded-full hover:bg-slate-500"
-                            onClick={handleSubmit}
+                            
                         >
                             Submit
                         </button>
@@ -168,7 +180,7 @@ function Personal(){
                 {/* Book Session */}
                 <div className={`${getSessions? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[300px] w-[370px] h-[250px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
                     <div className="flex justify-end items-end w-full h-[50px]">
-                        <img src={X} className="w-[40px] h-[40px]" onClick={()=> setGetSessions(false)}/>
+                        <img src={X} className="w-[40px] h-[40px] hover:bg-gray-400" onClick={()=> setGetSessions(false)}/>
                     </div>
                     
                     <div className="flex flex-col justify-center items-center gap-10">
@@ -180,9 +192,9 @@ function Personal(){
                 </div>
 
                 {/* Session List */}
-                <div className={`${sessionList? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[420px] w-[370px] h-[350px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
+                <div className={`${sessionList? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[500px] w-[370px] h-[500px] bg-white  top-[250px] md:top-[45px]": "w-0 h-0"}`}>
                     <div className="flex justify-end items-end w-full h-[50px]">
-                        <img src={X} className="w-[40px] h-[40px] " onClick={()=> setSessionList(false)} />
+                        <img src={X} className="w-[40px] h-[40px] hover:bg-gray-400" onClick={()=> setSessionList(false)} />
                     </div>
                     
                     <div className="flex flex-col justify-center items-center gap-10">
@@ -205,13 +217,26 @@ function Personal(){
                                     ? new Date(`1970-01-01T${session.endTime}`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
                                     : '';
 
-                                return (
-                                    <p key={index} className="hover:bg-gray-600" onClick={()=> setSelectedSession(session)}> {formattedDate} || {formattedStart} - {formattedEnd} </p>
+                               return (
+                                    <label
+                                        key={index}
+                                        className="flex items-center gap-2 p-2 hover:bg-gray-200 cursor-pointer rounded"
+                                    >
+                                        <input
+                                        type="radio"
+                                        name="selectedSession"   // same name for all → only one can be picked
+                                        value={session.id}
+                                        
+                                        onChange={()=> setSelectedSession(session)}
+                                        />
+                                        {formattedDate} || {formattedStart} - {formattedEnd}
+                                    </label>
                                 );
+
                             })}
                         </div>
                         <div>
-                            <button className="bg-blue-700 rounded-full px-4 py-3 text-white hover:bg-gray-600 active:bg-blue-300">Confirm</button>
+                            <button onClick={handleSessionSubmit} className="bg-blue-700 rounded-full px-5 py-3 text-white hover:bg-gray-600 active:bg-blue-300 font-bold">Book</button>
                         </div>
 
                         
