@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function Service(){
     return(
-        <div className=" flex flex-col relative md:flex md:flex-row gap-10 items-center justify-center mt-20">
+        <div className=" flex flex-col relative md:flex md:flex-row gap-10 items-center justify-center mt-30">
             <div className="flex flex-col items-center justify-center gap-5 bg-white w-[200px] h-[200px] rounded-2xl relative bottom-0 hover:bottom-5 transition-all duration-500">
                 <img src={System} className="w-[40px] h-[40px]" />
                 <p className="text-black  font-bold">System Allocation</p>

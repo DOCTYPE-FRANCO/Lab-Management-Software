@@ -14,8 +14,11 @@ function Navbar(){
                         <li className="cursor-pointer hover:text-gray-600 font-bold">Home</li>                 
                     </Link>
                     
-                    <li href="#Stack" className="cursor-pointer hover:text-gray-600 font-bold" >About</li>
-                    <li href="#Project" className="cursor-pointer hover:text-gray-600 font-bold">Contact</li>          
+                    <Link to="/services">
+                        <li className="cursor-pointer hover:text-gray-600 font-bold" >Services</li>
+                    </Link>
+
+                    <li className="cursor-pointer hover:text-gray-600 font-bold">Contact</li>          
                 </ul>
 
                 <div className="md:hidden flex justify-end w-full mt-3 mr-3">

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function Maintenance(){
     return(
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center mt-30">
             
             <div className="flex flex-row justify-center items-center">
                 <h1 className="text-white text-3xl font-bold max-w-[250px] md:max-w-[500px]">
@@ -26,6 +26,13 @@ function Maintenance(){
                     <div className="flex flex-col gap-5 justify-center items-center bg-white w-[200px] h-[200px] rounded-2xl mt-20 relative bottom-0 hover:bottom-5 transition-all duration-500">
                         <img src={Personal} className="w-[40px] h-[40px]"/>
                         <p className="text-black font-bold">Personal Computer</p>
+                    </div>
+                </Link>
+
+                <Link to= "/personal">
+                    <div className="flex flex-col gap-5 justify-center items-center bg-white w-[200px] h-[200px] rounded-2xl mt-20 relative bottom-0 hover:bottom-5 transition-all duration-500">
+                        <img src={Personal} className="w-[40px] h-[40px]"/>
+                        <p className="text-black font-bold">Entreprise</p>
                     </div>
                 </Link>
             </div>

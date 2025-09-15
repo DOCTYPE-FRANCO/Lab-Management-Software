@@ -87,7 +87,7 @@ function Personal(){
 
     return(
         <>
-            <div className="flex flex-col justify-center items-center overflow-hidden">
+            <div className="flex flex-col justify-center items-center overflow-hidden mt-20">
             
                 <div className="flex flex-col gap-5 justify-center items-center mt-0  ">
                     <img src={PersonalSystem} className="w-[65px]  rounded-full"/>

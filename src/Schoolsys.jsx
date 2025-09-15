@@ -6,7 +6,7 @@ import School from "./assets/school.svg";
  
 function Schoolsys() {
     return(
-        <div className=" flex flex-col justify-center items-center overflow-hidden">
+        <div className=" flex flex-col justify-center items-center overflow-hidden mt-20">
             
             <div className="flex flex-col gap-4  justify-center items-center mt-0  w-full ">
                 <img src={School} className="w-[40px] h-[40px]"/>
