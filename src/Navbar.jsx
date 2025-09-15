@@ -35,7 +35,7 @@ function Navbar(){
                     </div>
                     <ul className="text-3xl font-bold flex flex-col gap-7">
                         <Link to="/"><li onClick={()=> setMobile(false)} href="#Header" className="cursor-pointer hover:text-gray-600 font-bold">Home</li></Link>
-                        <li onClick={()=> setMobile(false)} href="#About" className="cursor-pointer hover:text-gray-600 font-bold">About</li>
+                        <Link to="/services"><li onClick={()=> setMobile(false)} href="#About" className="cursor-pointer hover:text-gray-600 font-bold">About</li></Link>
                         <li onClick={()=> setMobile(false)} href="#Contact" className="cursor-pointer hover:text-gray-600 font-bold">Contact</li>
                         <li onClick={()=> setMobile(false)} href="#Sign-In" className="cursor-pointer hover:text-gray-600 font-bold">Sign In</li>                        
                     </ul>

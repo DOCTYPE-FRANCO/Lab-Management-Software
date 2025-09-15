@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar.jsx";
-import Logo from "./assets/pau-logo.png"
+import Logo from "./assets/SSTTLOGGO.jpg"
 
 
 function Header(){
     return(
-        <div className="flex flex-row justify-between items-center p-4 w-full  fixed top-0 z-50">
+        <div className="flex flex-row justify-between items-center p-4 w-full fixed top-0 z-50">
             <div>                
-                <img src={Logo} className="w-[100px]"/>
+                <img src={Logo} className="w-[100px] "/>
             </div>
             
             <Navbar />
