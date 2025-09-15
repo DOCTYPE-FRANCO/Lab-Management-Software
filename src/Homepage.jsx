@@ -2,7 +2,7 @@ import React from "react";
 import Typewriter from "typewriter-effect";
 import Logo from "./assets/pau-logo.png"
 import Hero from "./assets/DMSHERO.jpg"
-
+import { motion } from "framer-motion";
 
 function Homepage(){
     return(
@@ -24,7 +24,14 @@ function Homepage(){
             </div>
 
             <div className="flex justify-center items-center mt-20">
-                <img src={Hero} alt="HERO-IMG" className="md:w-[500px] w-[350px] rounded-xl" />
+                <motion.img  
+                    src={Hero} 
+                    className="md:w-[500px] w-[350px] rounded-xl" 
+                    initial={{opacity: 0, x: 50, scale: 0.8}}
+                    animate={{opacity: 1, x:0 , scale: 1}}
+                    transition={{duration: 1}}        
+                    
+                />
             </div>
         </div>
             

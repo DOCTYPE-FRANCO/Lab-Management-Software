@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar.jsx";
-import Logo from "./assets/SSTTLOGGO.jpg"
+import Logo from "./assets/LG.jpg"
 
 
 function Header(){
