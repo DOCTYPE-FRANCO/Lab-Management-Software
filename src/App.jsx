@@ -7,6 +7,7 @@ import Schoolsys from "./Schoolsys.jsx";
 import Personal from "./Personal.jsx"
 import Inventory from "./Inventory.jsx"
 import Service from "./Service.jsx"
+import Lab2 from "./Lab2.jsx";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/schoolsystem" element={<Schoolsys/>}/>
           <Route path="/personal" element={<Personal/>}/>
           <Route path="/inventory" element={<Inventory />}/>
+          <Route path="/lab2" element={<Lab2 />}/>
           
         </Routes>
       </div>

@@ -12,10 +12,7 @@ function Header(){
             
             <Navbar />
 
-            <div className="hidden md:flex">
-                <button className="w-[100px] rounded-2xl bg-white font-semibold border-0 hover:border-2 transition-all">Sign In</button>
-            </div>
-
+        
             
         </div>
     );

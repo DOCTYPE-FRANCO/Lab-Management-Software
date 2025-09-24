@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import School from "./assets/school.svg";
 import Personal from "./assets/personal.svg"
+import Enterprise from "./assets/system-img.svg"
 import Logo from "./assets/pau-logo.png"
 import { Link } from "react-router-dom";
 
@@ -29,10 +30,10 @@ function Maintenance(){
                     </div>
                 </Link>
 
-                <Link to= "/personal">
+                <Link to= "">
                     <div className="flex flex-col gap-5 justify-center items-center bg-white w-[200px] h-[200px] rounded-2xl mt-20 relative bottom-0 hover:bottom-5 transition-all duration-500">
-                        <img src={Personal} className="w-[40px] h-[40px]"/>
-                        <p className="text-black font-bold">Entreprise</p>
+                        <img src={Enterprise} className="w-[40px] h-[40px]"/>
+                        <p className="text-black font-bold">Enterprise</p>
                     </div>
                 </Link>
             </div>
