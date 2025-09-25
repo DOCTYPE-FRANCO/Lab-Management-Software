@@ -40,6 +40,7 @@ function LS (){
             
         }catch(error){
             console.log(error);
+            alert("Login failed, please try again.");
         }
     }
     async function handleSignup(e){
@@ -88,10 +89,8 @@ function LS (){
     return(
         <div className={logged? "hidden" : ""}>
             {/*Sign Up*/}
-            <div className="fixed inset-0  bg-opacity-0.2 backdrop-blur-xs z-20"></div>
-            
-            <div className="flex justify-center fixed top-1 left-1/2 -translate-x-1/2 md:w-[800px] w-[350px] h-[800px] md:h-[650px] bg-white rounded-xl z-50 shadow-lg">
-                <div className="flex flex-col bg-blue-500 w-[300px] h-[550px] mt-24 md:mt-0 rounded-2xl justify-center">
+            <div className="fixed inset-0  bg-opacity-0.2 backdrop-blur-xs z-20"></div>         
+                <div className={haveAccount? "hidden": "flex flex-col fixed md:top-1 top-0 z-50 left-1/2 -translate-x-1/2 bg-blue-500 w-[300px] h-[550px] mt-12 md:mt-0 rounded-2xl justify-center"}>
                     <div><p className="mb-3 text-center text-white text-2xl font-extrabold">SIGN-UP</p></div>
                     
                     <form onSubmit={handleSignup} className="flex flex-col items-center justify-center">
@@ -162,13 +161,13 @@ function LS (){
                             Sign Up
                         </button>
 
-                        <p onClick={() =>setHaveAccount(true)} className="mt-2 hover:text-purple-900 hover:cursor-pointer active:text-purple-900 active:cursor-pointer">Already Have an account , Login.</p>
+                        <p onClick={() =>setHaveAccount(true)} className="mt-2 hover:text-purple-900 hover:cursor-pointer active:text-purple-900 active:cursor-pointer">Already Have an account, Login.</p>
                     </form>
                 </div>
-            </div>
+            
 
-            <div className={haveAccount? "flex justify-center fixed top-1 left-1/2 -translate-x-1/2 md:w-[800px] w-[350px] h-[650px] bg-white rounded-xl z-50 shadow-lg" : "hidden"}>
-                <div className="flex flex-col bg-blue-500 w-[300px] h-[550px] mt-24 md:mt-0 rounded-2xl justify-center">
+            <div className={haveAccount? "flex justify-center fixed top-1 left-1/2 -translate-x-1/2  rounded-xl z-50  shadow-lg" : "hidden"}>
+                <div className="flex flex-col bg-blue-500 w-[300px] h-[550px] mt-12 md:mt-0 rounded-2xl justify-center">
                     <div><p className="mb-3 text-center text-white text-2xl font-extrabold">LOGIN</p></div>
                     
                     <form onSubmit={handleLogin} className="flex flex-col items-center justify-center">
@@ -205,7 +204,7 @@ function LS (){
                             LOGIN
                         </button>
 
-                        <p onClick={() =>setHaveAccount(false)} className="mt-2 hover:text-purple-900 hover:cursor-pointer active:text-purple-900 active:cursor-pointer">Don't Have an account , Sign Up.</p>
+                        <p onClick={() =>setHaveAccount(false)} className="mt-2 hover:text-purple-900 hover:cursor-pointer active:text-purple-900 active:cursor-pointer">Don't Have an account, Sign Up.</p>
                     </form>
                 </div>
             </div>
