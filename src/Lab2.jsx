@@ -1,28 +1,36 @@
 import React, {useEffect, useState} from "react";
+import { ClipLoader, BeatLoader} from "react-spinners";
 import axios from "axios";
 function Lab2(){
     const [systems, setSystems] = useState([]);
     const [selectedSystem, setSelectedSystem] = useState(null);
+    const [edit, setEdit] = useState(false);
     const [token, setToken] = useState(localStorage.getItem("jwt"));
+    const [lastDate, setLastDate] = useState();
+    const [loading, setLoading] = useState(false)
     console.log(token)
 
-    useEffect(() =>{
-        async function getSystems(){
-            try{
-                const response = await axios.get("http://localhost:8080/api/lab2systems", {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                const data = response.data;
-                console.log(data);
-                setSystems(data)
-            }catch (error){
-                console.log(error);
-            }
+    async function getSystems(){
+        try{
+            setLoading(true)
+            const response = await axios.get("http://localhost:8080/api/lab2systems", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            
+            const data = response.data;
+            console.log(data);
+            setSystems(data.systems)
+            setLoading(false)
+            setLastDate(data.lastDate)
+        }catch (error){
+            console.log(error);
         }
+    }
+    useEffect(() =>{
         getSystems()
-    }, [])
+    },[])
 
     function getStatusColor(status){
         switch(status){
@@ -33,20 +41,36 @@ function Lab2(){
         }
     }
 
-    function editSystem(system){
+    function viewSystem(system){
         setSelectedSystem(system)
+    }
+
+    function editSystem(){
+        setEdit(true)
     }
 
     return(
         <div className="mt-20 flex flex-col justify-center items-center">
-            <div className="text-2xl text-white text-center font-bold">Lab 2</div>
+            <div className={`text-2xl text-white text-center font-extrabold ${loading? 'mb-10': ''}`}>Lab 2 INVENTORY</div>
+            
+            {systems && (
+                <div className={`text-white text-center font-bold ${loading? 'mb-20': ''}`}>LAST UPDATED : {lastDate}</div>
+            )}
 
-            <div className="grid grid-cols-8 gap-2 justify-center items-center w-[800px] mt-10">
+            {loading && (
+                <div className="flex flex-col justify-center items-center">
+                    <BeatLoader size={30} color="#e2eaf0"/>
+                    <p className="text-white font-bold">Trying to fetch data from Database ...</p>
+                </div>
+            )}
+
+            <div className="grid grid-cols-4 pl-8 md:grid-cols-8 gap-2 justify-center items-center w-[400px] md:w-[800px] mt-10">
+                
                 {systems.map((system) => (
                     <div 
                         key={system.name}
                         className={`flex justify-center items-center w-[50px] h-[50px] bg-black rounded-2xl active:bg-gray-400 cursor-pointer transition-all duration-200 hover:scale-110 ${getStatusColor(system.status)}`}
-                        onClick={() => editSystem(system)}
+                        onClick={() => viewSystem(system)}
                     >
                         <p className="flex justify-center font-bold text-white text-xs">{system.name}</p>
                     </div>
@@ -65,9 +89,49 @@ function Lab2(){
                     </div>
 
                     <div className="flex flex-row justify-center gap-1 mb-5">
-                        <button className="bg-green-500 w-[70px] py-1 rounded-2xl font-bold text-white">Edit</button>
+                        <button onClick={editSystem} className="bg-green-500 w-[70px] py-1 rounded-2xl font-bold text-white hover:bg-green-800 active:bg-gray-700">Edit</button>
                         <button onClick={() => setSelectedSystem(null)} className="bg-red-500 w-[70px] py-1 rounded-2xl font-bold text-white hover:bg-red-800 active:bg-gray-700">Close</button>
                     </div>
+
+                    {edit && (
+                        <div className="flex flex-col gap-14 items-center fixed top-20 bg-white w-[450px] h-[250px] z-50 rounded-sm">
+                            <h2 className="text-black text-2xl font-bold text-center">Edit {selectedSystem.name}</h2>
+
+                            <select 
+                                className="flex justify-center border rounded p-2 w-1/2 text-center"
+                                value={selectedSystem.status}
+                                onChange={(e) => 
+                                    setSelectedSystem({...selectedSystem, status: e.target.value})
+                                } 
+                            >
+                                <option>WORKING</option>
+                                <option>FAULTY</option>
+                                <option>MISSING PERIPHERALS</option>
+                            </select>
+
+                            <button 
+                                className="font-bold text-white bg-blue-900 w-[80px] h-[30px] rounded-full hover:bg-blue-600 active:bg-gray-700"
+                                onClick={async () => {
+                                    try {
+                                        console.log(selectedSystem.status)
+                                    await axios.put(
+                                        `http://localhost:8080/api/lab2systems/${selectedSystem.name}`,
+                                        selectedSystem,
+                                        { headers: { Authorization: `Bearer ${token}` } }
+                                    );
+                                    getSystems();
+                                    setSelectedSystem(null);
+                                    setEdit(false);
+                                    
+                                    } catch (error) {
+                                    console.error(error);
+                                    }
+                                }}
+                            >
+                                Save
+                            </button>
+                        </div>
+                    )}
                 </div>
 
             )}

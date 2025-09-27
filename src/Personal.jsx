@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { BeatLoader } from "react-spinners";
 import Navbar from "./Navbar";
 import Logo from "./assets/pau-logo.png";
 import PersonalSystem from "./assets/user-img.png";
@@ -14,7 +15,7 @@ function Personal(){
         tried: "",
         noticed: ""
     });
-
+    const [token, setToken] = useState(localStorage.getItem("jwt"))
     const [getSessions, setGetSessions] = useState(false);
 
     const [sessionList, setSessionList] = useState(false);
@@ -22,6 +23,9 @@ function Personal(){
     const [sessions, setSessions] = useState([]);
 
     const [selectedSession, setSelectedSession] = useState(null);
+
+    const [loading, setLoading] = useState(false)
+    console.log(token);
 
     function handleSessionSubmit(session){
         setSelectedSession(session);
@@ -52,7 +56,11 @@ function Personal(){
         event.preventDefault();
         try {
             // send to backend
-            const response = await axios.post("http://localhost:8080/api/complaint/personalcomplaint", formData);
+            const response = await axios.post("http://localhost:8080/api/complaint/personalcomplaint",{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }, formData);
             console.log("Submitted successfully:", response.data);
 
             
@@ -75,7 +83,12 @@ function Personal(){
     async function getAvailableSessions(event){
         event.preventDefault();
         try{
-            const response = await axios.get("http://localhost:8080/api/availablesessions")
+            setLoading(true)
+            const response = await axios.get("http://localhost:8080/api/availablesessions", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
             console.log(response.data);
             setSessions(response.data);
             setSessionList(true);
@@ -178,21 +191,30 @@ function Personal(){
                 </form>
                 
                 {/* Book Session */}
-                <div className={`${getSessions? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[300px] w-[370px] h-[250px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
+                <div className={`${getSessions? "rounded-2xl flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[300px] w-[370px] h-[250px] bg-white  top-[250px] md:top-[100px]": "w-0 h-0"}`}>
                     <div className="flex justify-end items-end w-full h-[50px]">
                         <img src={X} className="w-[40px] h-[40px] hover:bg-gray-400" onClick={()=> setGetSessions(false)}/>
                     </div>
                     
-                    <div className="flex flex-col justify-center items-center gap-10">
+                    <div className={loading ? "hidden" :`flex flex-col justify-center items-center gap-10`}>
                         <p className="text-2xl font-bold">Book a Session for Repair</p>
                         <button onClick={getAvailableSessions} className="w-[240px] h-[40px] bg-blue-600 rounded-full font-bold text-white hover:bg-gray-600">
                             Get Available Sessions
                         </button>
                     </div>
+
+                    {loading && (
+                        <div className="flex flex-col items-center justify-center">
+                            <p className="font-bold mb-5">Getting Sessions...</p>
+                            <BeatLoader />                            
+                        </div>
+                    )}
                 </div>
 
+                
+
                 {/* Session List */}
-                <div className={`${sessionList? " flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[500px] w-[370px] h-[500px] bg-white  top-[250px] md:top-[45px]": "w-0 h-0"}`}>
+                <div className={`${sessionList? " rounded-2xl flex flex-col  fixed gap-10  z-45 md:w-[550px] md:h-[500px] w-[370px] h-[500px] bg-white  top-[250px] md:top-[45px]": "w-0 h-0"}`}>
                     <div className="flex justify-end items-end w-full h-[50px]">
                         <img src={X} className="w-[40px] h-[40px] hover:bg-gray-400" onClick={()=> setSessionList(false)} />
                     </div>
