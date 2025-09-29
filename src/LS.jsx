@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { BeatLoader } from "react-spinners";
 function LS (){
     const [logged, setLogged] = useState(false)
     const [haveAccount , setHaveAccount] = useState(false);
@@ -12,6 +13,8 @@ function LS (){
 
     })
 
+    const [loading, setLoading] = useState(false)
+
     const [Ldata, setLdata] = useState({
         matricNo: "",
         password: ""
@@ -19,32 +22,36 @@ function LS (){
     })
     async function handleLogin(e){
         e.preventDefault();
+        setLoading(true)
 
          try{
             const response = await axios.post("http://localhost:8080/api/login", {
                 matricNo: Ldata.matricNo,
                 password: Ldata.password
             });
+            
 
             console.log(response);
             if(response.status === 200){
                 const token = response.data.Token;
                 console.log(token);
                 localStorage.setItem("jwt", token);
+                setLoading(false)
                 setLogged(true);
 
             }else{
                 alert("Something Went wrong ], Try again")
             }
-
-            
+             
         }catch(error){
             console.log(error);
+            setLoading(false); 
             alert("Login failed, please try again.");
         }
     }
     async function handleSignup(e){
         e.preventDefault();
+        setLoading(true)
 
         if (Sdata.password !== Sdata.confirmPassword) {
             alert("Passwords do not match!");
@@ -58,7 +65,7 @@ function LS (){
                 email: Sdata.email,
                 password: Sdata.password
             });
-
+            setLoading(false);
             console.log(response);
             if(response.data === 'DATA RECEIVED, TRY LOGGING IN'){
                 setHaveAccount(true);
@@ -67,6 +74,8 @@ function LS (){
             }
         }catch(error){
             console.log(error);
+            setLoading(false)
+            alert("Something went wrong. Try again later")
         }
     }
 
@@ -88,11 +97,17 @@ function LS (){
 
     return(
         <div className={logged? "hidden" : ""}>
+            
             {/*Sign Up*/}
-            <div className="fixed inset-0  bg-opacity-0.2 backdrop-blur-xs z-20"></div>         
-                <div className={haveAccount? "hidden": "flex flex-col fixed md:top-1 top-0 z-50 left-1/2 -translate-x-1/2 bg-blue-500 w-[300px] h-[550px] mt-12 md:mt-0 rounded-2xl justify-center"}>
-                    <div><p className="mb-3 text-center text-white text-2xl font-extrabold">SIGN-UP</p></div>
+            <div className="fixed inset-0  bg-opacity-0.2 backdrop-blur-xs z-10"></div>         
+                <div className={haveAccount? "hidden": "flex flex-col fixed md:top-1 top-0 z-40 left-1/2 -translate-x-1/2 bg-blue-500 w-[300px] h-[550px] mt-12 md:mt-0 rounded-2xl justify-center"}>
                     
+                    <div><p className="mb-3 text-center text-white text-2xl font-extrabold">SIGN-UP</p></div>
+                    {loading && (
+                        <div className=" fixed  top-20 flex justify-center items-center w-full h-2 z-50">
+                            <BeatLoader color="white"  size={50}/>
+                        </div>
+                    )}
                     <form onSubmit={handleSignup} className="flex flex-col items-center justify-center">
                         <label className=" mb-2 font-bold text-white">
                             Matric Number
@@ -170,6 +185,11 @@ function LS (){
                 <div className="flex flex-col bg-blue-500 w-[300px] h-[550px] mt-12 md:mt-0 rounded-2xl justify-center">
                     <div><p className="mb-3 text-center text-white text-2xl font-extrabold">LOGIN</p></div>
                     
+                    {loading && (
+                        <div className=" fixed  top-20 flex justify-center items-center w-full h-2 z-50">
+                            <BeatLoader color="white"  size={30}/>
+                        </div>
+                    )}
                     <form onSubmit={handleLogin} className="flex flex-col items-center justify-center">
                         <label className=" mb-2 font-bold text-white">
                             Matric Number
