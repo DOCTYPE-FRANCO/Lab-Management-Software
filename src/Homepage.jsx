@@ -4,8 +4,23 @@ import Logo from "./assets/pau-logo.png"
 import Hero from "./assets/DMSHERO.jpg"
 import { motion,useAnimation, useInView } from "framer-motion";
 import Herosection from "./Herosection";
+import { Goal, Target } from "lucide-react";
 
 function Homepage(){
+    const ref2 = useRef(null);
+    const isInView2 = useInView(ref2);
+    const mainControls2 = useAnimation();
+    const variants2 ={
+        hidden: {opacity: 0, y: 75},
+        visible: {opacity: 1, y: 0}
+    }
+
+    useEffect(() =>{
+        if (isInView2) {
+            mainControls2.start("visible");
+        }
+    }, [isInView2]);
+    
     return(
         <div className="flex flex-col md:flex-col gap-10 justify-center items-center mt-30 md:mt-10">
             <Herosection />
