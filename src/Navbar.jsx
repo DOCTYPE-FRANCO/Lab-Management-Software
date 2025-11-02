@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 function Navbar(){
     const [mobile, setMobile] = useState(false);
     return(
-        <div className="absolute top-0 left-0 w-full h-[50px] overflow-hidden">
-            <div className="flex justify-center items-center h-full">
+        <div className="w-full h-[50px] overflow-hidden">
+            <div className="flex gap-10 justify-center items-center h-full">
                 
                 <ul className="hidden md:flex gap-8 text-white">
                     <Link to="/">  
@@ -21,8 +21,12 @@ function Navbar(){
                     <li className="cursor-pointer hover:text-gray-600 font-bold">Contact</li>          
                 </ul>
 
+                <p className="hidden md:flex  bg-white p-1 px-6  font-bold rounded-md transition-transform duration-300 hover:scale-105 cursor-pointer">
+                    SIGN IN
+                </p>
+
                 <div className="md:hidden flex justify-end w-full mt-3 mr-3">
-                <img src={Menu} onClick={()=> setMobile(true)} className="w-[40px]"/>
+                    <img src={Menu} onClick={()=> setMobile(true)} className="w-[40px]"/>
                 </div>
 
                 

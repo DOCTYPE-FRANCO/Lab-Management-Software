@@ -1,7 +1,7 @@
 import React from "react";
 function Herosection(){
     return(
-        <div className="flex flex-col items-center gap-7 mt-20">
+        <div className="flex flex-col items-center gap-7 mt-28">
             <p className="md:text-6xl text-white font-extrabold md:max-w-[600px] text-center mb-10">Manage your Labs with Ease</p>
 
             <div className="flex flex-row gap-7">

@@ -39,25 +39,30 @@ function Homepage(){
                 >
                     <motion.div variants={variants2} className="flex flex-row justify-center gap-3 mt-10">
                         <Target color="#000000" />
-                        <p className="text-2xl font-bold text-black">Why Work with Me</p>
+                        <p className="text-2xl font-bold text-black">What it does for you</p>
                     </motion.div>
 
                     <section className="flex flex-col gap-3 items-start justify-self-center mt-10">
                         <motion.div variants={variants2} className="flex flex-row gap-5">
                             <Goal color="#000000"/>
-                            <p className="text-black">Proven ability to engage and grow audiences</p>
+                            <p className="text-black">Helps you to Manage Lab Sessions</p>
                         </motion.div>
 
 
                         <motion.div variants={variants2} className="flex flex-row gap-5">
                             <Goal color="#000000"/>
-                            <p className="text-black">Creative collaboration that aligns with your vision</p>
+                            <p className="text-black">Schedules Maintenance for your Lab</p>
                         </motion.div>
 
                         
                         <motion.div variants={variants2} className="flex flex-row gap-5">
                             <Goal color="#000000"/>
-                            <p className="text-black">Professional and timely communication</p>
+                            <p className="text-black">Helps you take Inventory easily</p>
+                        </motion.div>
+
+                        <motion.div variants={variants2} className="flex flex-row gap-5">
+                            <Goal color="#000000"/>
+                            <p className="text-black">Repair Session Booking</p>
                         </motion.div>
                     </section>
                 </motion.section>
