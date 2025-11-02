@@ -35,7 +35,7 @@ function Homepage(){
                         hidden:{opacity: 0},
                         visible: {opacity: 1, transition:{staggerChildren: 0.5}}
                     }}
-                    className="flex flex-col justify-center items-center shadow-2xl shadow-gray-500 mt-20 mb-20 w-[80vw] md:w-[45vw] md:h-[280px] mx-auto rounded-md p-5 md:p-0 bg-white"
+                    className="flex flex-col justify-center items-center md:w-[500px] md:h-[340px] mx-auto rounded-md p-5 md:p-0 bg-white"
                 >
                     <motion.div variants={variants2} className="flex flex-row justify-center gap-3 mt-10">
                         <Target color="#000000" />
