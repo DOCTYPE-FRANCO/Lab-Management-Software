@@ -1,8 +1,10 @@
 import React from "react";
 function Herosection(){
     return(
-        <div>
-            <p className="md:text-6xl">Manage your Labs with ease</p>
+        <div className="mt-20">
+            <p className="md:text-6xl text-white font-extrabold md:max-w-[600px] text-center">Manage your Labs with Ease</p>
+
+            
         </div>
     );
 }
