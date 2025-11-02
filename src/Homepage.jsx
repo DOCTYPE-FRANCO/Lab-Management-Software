@@ -3,12 +3,12 @@ import Typewriter from "typewriter-effect";
 import Logo from "./assets/pau-logo.png"
 import Hero from "./assets/DMSHERO.jpg"
 import { motion } from "framer-motion";
-import LS from "./LS";
+import Herosection from "./Herosection";
 
 function Homepage(){
     return(
-        <div className="flex flex-col md:flex-row gap-10 justify-center items-center mt-30 md:mt-10">
-            <LS />
+        <div className="flex flex-col md:flex-col gap-10 justify-center items-center mt-30 md:mt-10">
+            <Herosection />
             <div className="flex flex-col md:w-[500px] w-[300px] gap-5">
                 <p className="text-white font-extrabold text-5xl">LMS</p>
                 <span className="text-gray-400 font-bold text-3xl">

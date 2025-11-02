@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 function LS (){
-    const [logged, setLogged] = useState(false)
+    const [logged, setLogged] = useState(true)
     const [haveAccount , setHaveAccount] = useState(false);
     const [Sdata, setSdata] = useState({
         matricNo: "",
@@ -40,7 +40,7 @@ function LS (){
                 setLogged(true);
 
             }else{
-                alert("Something Went wrong ], Try again")
+                alert("Something Went wrong , Try again")
             }
              
         }catch(error){
