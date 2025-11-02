@@ -12,6 +12,10 @@ function Header(){
             
             <Navbar />
 
+            <p className="hidden md:flex bg-white p-1 px-6 mr-10  font-bold rounded-md transition-transform duration-300 hover:scale-105 cursor-pointer">
+                SIGN IN
+            </p>
+
         </div>
     );
 }
