@@ -96,7 +96,7 @@ function LS (){
     }
 
     return(
-        <div className={logged? "hidden" : ""}>
+        <div className={logged? "" : ""}>
             
             {/*Sign Up*/}
             <div className="fixed inset-0  bg-opacity-0.2 backdrop-blur-xs z-10"></div>         
