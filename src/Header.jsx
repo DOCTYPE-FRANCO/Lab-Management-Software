@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar.jsx";
 import Logo from "./assets/LG.jpg"
+import { Link } from "react-router-dom";
 
 
 function Header(){
@@ -12,9 +13,11 @@ function Header(){
             
             <Navbar />
 
-            <p className="hidden md:flex bg-white p-1 px-6 mr-10  font-bold rounded-md transition-transform duration-300 hover:scale-105 cursor-pointer">
-                SIGN IN
-            </p>
+            <Link to="/ls">
+                <p className="hidden md:flex bg-white p-1 px-6 mr-10  font-bold rounded-md transition-transform duration-300 hover:scale-105 cursor-pointer">
+                    SIGN IN
+                </p>
+            </Link>
 
         </div>
     );
